@@ -1,3 +1,4 @@
+
 * {
   padding: 0;
   margin: 0;
@@ -9,6 +10,11 @@ body {
   display: flex;
   background: #060AB2;
 }
+/*display flex to body and margin auto makes .memory-game container centered vertically and horizontally
+
+with .memory-game as a flex-container, items witll shrink in width to fit the container. Also, by setting flex-wrap to wrap, flex items wrap along multiple lines according to their size*/
+
+/*to produce 3d flip effect, perspective property was added to .memory-game. the property sets how far in the z plane the object is from the user. the lower the value, the bigger the perspective effect. For a subtle effect, let's apply 1000px*/
 
 .memory-game {
   width: 640px;
@@ -16,9 +22,15 @@ body {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  perspective: 100px;
+  perspective: 1000px;
 }
 
+/*Each card's width and height is calculated with calc function and
+.memory-card children's position are relative so the children can be positioned absolutely relative to it.
+
+Also, front face and back face position is set to absolute to stack them on top of each other*/
+
+/*Transition has been added to transform to create the card movement*/
 .memory-card {
   width: calc(25% - 10px);
   height: calc(33.333% - 10px);
@@ -39,6 +51,7 @@ body {
   transform: rotateY(180deg);
 }
 
+/*backface visibility hidden was added to reveal that specific card's image*/
 .front-face, 
 .back-face {
   width: 100%;
@@ -50,6 +63,7 @@ body {
   backface-visibility: hidden;
 }
 
+/*adding 180 deg rotation to front face because both images were hidden backface*/
 .front-face {
   transform: rotateY(180deg);
 }
